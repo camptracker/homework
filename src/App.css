@@ -1,0 +1,306 @@
+:root {
+  --purple: #7c3aed;
+  --orange: #f97316;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --yellow: #eab308;
+  --bg: #faf5ff;
+  --card: #ffffff;
+  --text: #1e1b4b;
+  --text-light: #6b7280;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(124, 58, 237, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 12px 0;
+}
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--pink), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* Settings */
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.settings-group {
+  display: flex;
+  gap: 4px;
+  background: #f3f0ff;
+  border-radius: 12px;
+  padding: 4px;
+}
+.settings-btn {
+  font-family: 'Fredoka', sans-serif;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+.settings-btn.active {
+  background: var(--purple);
+  color: white;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+.timer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  cursor: pointer;
+  user-select: none;
+}
+.timer-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple);
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-value.correct { color: var(--green); }
+.stat-value.wrong { color: var(--orange); }
+.stat-value.streak { color: var(--purple); }
+.stat-value.timer { color: var(--blue); }
+
+/* Progress / Stars */
+.progress-bar {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Problem */
+.problem-area {
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+}
+.problem {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text);
+  line-height: 1.2;
+}
+.problem .operator {
+  color: var(--purple);
+  margin: 0 8px;
+}
+.equals {
+  font-size: 3rem;
+  color: var(--purple);
+  margin: 0 8px;
+}
+.answer-display {
+  display: inline-block;
+  min-width: 100px;
+  font-size: 3.5rem;
+  font-weight: 700;
+  border-bottom: 4px solid var(--purple);
+  color: var(--blue);
+  min-height: 56px;
+  vertical-align: bottom;
+}
+.answer-display.empty {
+  color: #d4d0e8;
+}
+
+/* Feedback */
+.feedback {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.feedback.correct {
+  color: var(--green);
+  animation: popIn 0.4s ease;
+}
+.feedback.wrong {
+  color: var(--orange);
+  animation: shake 0.4s ease;
+}
+
+/* Number Pad */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.numpad-btn {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.numpad-btn:active {
+  transform: scale(0.93);
+}
+.numpad-btn.number {
+  background: #f3f0ff;
+  color: var(--text);
+}
+.numpad-btn.number:hover {
+  background: #e8e0ff;
+}
+.numpad-btn.backspace {
+  background: #fef3c7;
+  color: var(--orange);
+}
+.numpad-btn.submit {
+  background: linear-gradient(135deg, var(--green), #16a34a);
+  color: white;
+  box-shadow: 0 3px 12px rgba(34, 197, 94, 0.3);
+}
+.numpad-btn.submit:hover {
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
+}
+.numpad-btn.negative {
+  background: #fce7f3;
+  color: var(--pink);
+}
+
+/* Celebration overlay */
+.celebration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  font-size: 2rem;
+  animation: confettiFall 1.5s ease-out forwards;
+}
+
+/* Animations */
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg) scale(0.3);
+    opacity: 0;
+  }
+}
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
+}
+.emoji-float {
+  position: absolute;
+  animation: float 1s ease-out forwards;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .problem { font-size: 2.5rem; }
+  .answer-display { font-size: 2.5rem; min-width: 70px; }
+  .equals { font-size: 2rem; }
+  .numpad-btn { padding: 14px; font-size: 1.3rem; }
+}
